@@ -1,8 +1,9 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { useReducer } from "react";
 
 
 const rootReducer = combineReducers({
-
+    useReducer
 });
 
 
