@@ -3,13 +3,25 @@ import { IPost } from '../models/Ipost'
 
 interface PostItemProps {
     post: IPost;
+    remove: (post: IPost) => void;
+    update: (post: IPost) => void;
 }
 
-const PostItem: React.FC<PostItemProps> = ({post}) => {
+const PostItem: React.FC<PostItemProps> = ({post, remove, update}) => {
+  const handleRemove = (event: React.MouseEvent) => {
+    event?.stopPropagation();
+    remove(post)
+  }
+
+  const handleUpdate = (event: React.MouseEvent) => {
+    const title = prompt() || '';
+    update({...post, title} as IPost)
+  }
+
   return (
-    <div className="post_item">
+    <div className="post_item" onClick={handleUpdate}>
        {post.id}. {post.title}
-       <button>Delete</button>
+       <button onClick={handleRemove}>Delete</button>
         
     </div>
   )
